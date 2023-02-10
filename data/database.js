@@ -1,12 +1,25 @@
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri =
+  "mongodb+srv://ilovemelatina:thatassthough@cluster0.8e7zqec.mongodb.net/puss?retryWrites=true&w=majority";
 
-const uri = "mongodb+srv://ilovemelatina:thatassthough@cluster0.8e7zqec.mongodb.net/?retryWrites=true&w=majority";
-
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
+const pussySchema = new mongoose.Schema({
+  _id: Number,
+  name: String,
 });
+
+const Course = mongoose.model("types", pussySchema);
+
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+Course.find({})
+  .then((data) => {
+    console.log("Pussy types:", data);
+  })
+  .catch((error) => {
+    console.log(error);
+  });

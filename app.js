@@ -2,6 +2,7 @@ const path = require('path');
 
 const express = require('express');
 
+
 const authRoutes = require('./routes/auth.routes')
 
 const app = express();
